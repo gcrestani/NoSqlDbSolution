@@ -28,12 +28,16 @@ namespace MongoDbUi
       //GetContactById(new Guid("acfff736-a7f1-42ec-9990-64dc1571c1a7"));
 
       //UpdateContactFirsName(user);
-      RemovePhoneNumberFromUser("1234-5678", new Guid("b7914fc2-ffec-4b4f-a930-8dcd96faefdf"));
+      RemoveUser( new Guid("b7914fc2-ffec-4b4f-a930-8dcd96faefdf"));
 
       Console.WriteLine("Finished processing MongoDB");
       Console.ReadLine();
     }
 
+    public static void RemoveUser(Guid id)
+    {
+      db.DeleteRecord<ContactModel>(tableName,id);
+    }
     public static void RemovePhoneNumberFromUser(string phoneNumber, Guid id)
     {
       var contact = db.LoadRecordById<ContactModel>(tableName, id);
